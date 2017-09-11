@@ -1,0 +1,49 @@
+<div class="card col s12">
+    <div class="card-content">
+      <form class="row" autocomplete="off" [formGroup]="accountForm" (ngSubmit)="save()">
+        <div class="row">
+          <div class="input-field col s6" [ngClass]="{'has-danger has-error has-feedback': formErrors.title }">
+            <input type="text" formControlName="title" id="title" class="validate" placeholder="Como você prefere identificar esta conta?"
+              required>
+            <span class="help-block " *ngIf="formErrors.title"><small>{{ formErrors.title }}</small></span>
+            <label for="title" class="active">Título da conta</label>
+          </div>
+          <div class="input-field col s6" [ngClass]="{'has-danger has-error has-feedback': formErrors.balance_initial }">
+            <input formControlName="balance_initial" type="text" id="balance_initial" class="validate" placeholder="Qual o valor inicial desta conta?"
+              required>
+            <span class="help-block " *ngIf="formErrors.balance_initial"><small>{{ formErrors.balance_initial }}</small></span>
+            <label for="balance_initial" class="active">Valor inicial</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s6" [ngClass]="{'has-danger has-error has-feedback': formErrors.bank_id }">
+            <label for="bank_id" class="active">Qual seu banco?</label>
+            <select formControlName="bank_id" id="bank_id" class="browser-default">
+              <option *ngFor="let bank of banks" [value]="bank.id">{{ bank.title}} - {{ bank.code }}</option>
+            </select>
+            <span class="help-block " *ngIf="formErrors.bank_id"><small>{{ formErrors.bank_id }}</small></span>
+          </div>
+          <div class="input-field col s6" [ngClass]="{'has-danger has-error has-feedback': formErrors.agency }">
+            <input formControlName="agency" type="number" id="agency" class="validate" placeholder="Qual o número da sua agencia?" required>
+            <span class="help-block " *ngIf="formErrors.agency"><small>{{ formErrors.agency }}</small></span>
+            <label for="agency" class="active">Número da agência</label>
+          </div>
+        </div>
+        <div class="input-field col s6" [ngClass]="{'has-danger has-error has-feedback': formErrors.account_number }">
+          <input formControlName="account_number" type="number" id="account_number" class="validate" placeholder="Qual o número da sua conta?"
+            required>
+          <span class="help-block " *ngIf="formErrors.account_number"><small>{{ formErrors.account_number }}</small></span>
+          <label for="account_number" class="active">Número da conta</label>
+        </div>
+        <div class="input-field col s12">
+          <input type="submit" [ladda]="isLoading" class="waves-effect waves-light btn-large blue-grey darken-4" value="salvar">
+          <span
+            class="ladda-label"></span>
+        </div>
+      </form>
+    </div>
+    <div class="card-action">
+      <a [routerLink]="['/accounts/']">Voltar</a>
+    </div>
+
+  </div>

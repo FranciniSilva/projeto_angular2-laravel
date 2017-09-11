@@ -1,0 +1,37 @@
+<div class="center-align">
+    <div class="preloader-wrapper big active" *ngIf="loading">
+      <div class="spinner-layer spinner-blue-only">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div>
+        <div class="gap-patch">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="card col s12" *ngIf="!loading">
+  <div class="card-content">
+    <div class="row">
+      <div class="col s9">
+        <div class="card-title">Detalhes da conta</div>
+        <p>Agência: {{account.agency}} / Contra: {{ account.account_number}}</p>
+        <p>Banco: {{ account.bank.title }} - {{ account.bank.code }}</p>
+        <p>Valor inicial da conta: {{ account.balance_initial }}</p>
+      </div>
+      <div class="col s3 right-align">
+        <p>Saldo: <span class="btn disabled"> {{ account.balance }}</span></p>
+      </div>
+    </div>
+  </div>
+  <div class="card-action">
+    <a [routerLink]="['/accounts']">Voltar</a>
+    <a [routerLink]="['/accounts/'+ account.id + '/edit']">Editar</a>
+    <a (click)="delete(account.id, account.title)">Remover</a>
+  </div>
+
+</div>

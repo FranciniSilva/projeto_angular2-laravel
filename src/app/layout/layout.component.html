@@ -1,0 +1,20 @@
+<br>
+<nav>
+  <div id="cor" class="nav-wrapper">
+    <div class="col s12">
+      <ng-template ngFor let-url [ngForOf]="pageInfo?.urls" let-last="last">
+        <a class="breadcrumb" *ngIf="!last" [routerLink]="url.url">
+          <a href='javascript:void(0)' class="breadcrumb">{{url.title}}</a>
+        </a>
+        <a *ngIf="last" class="breadcrumb active">{{url.title}}</a>
+
+      </ng-template>
+    </div>
+  </div>
+</nav>
+
+
+
+<!-- ============================================================== -->
+<!-- End Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->

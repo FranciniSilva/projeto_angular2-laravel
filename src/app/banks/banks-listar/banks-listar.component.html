@@ -1,0 +1,38 @@
+<div class="center-align">
+  <div class="preloader-wrapper big active" *ngIf="loading">
+    <div class="spinner-layer spinner-blue-only">
+      <div class="circle-clipper left">
+        <div class="circle"></div>
+      </div>
+      <div class="gap-patch">
+        <div class="circle"></div>
+      </div>
+      <div class="circle-clipper right">
+        <div class="circle"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card col s12" *ngIf="!loading">
+  <div class="card-content">
+
+    <table class="highlight">
+      <thead>
+        <tr>
+          <th>Bancos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let bank of banks.data" [routerLink]="['/banks/' + bank.id + '/view']">
+          <td>
+            {{bank.title}} - {{ bank.code }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<app-paginate (onChangePage)="pageChanged($event)" [total]="banks.total" [activePage]="banks.current_page" [totalPage]="banks.last_page" [resource]="'banks'">
+
+</app-paginate>

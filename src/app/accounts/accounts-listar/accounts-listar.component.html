@@ -1,0 +1,48 @@
+<div class="center-align">
+    <div class="preloader-wrapper big active" *ngIf="loading">
+      <div class="spinner-layer spinner-blue-only">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div>
+        <div class="gap-patch">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="card col s12" *ngIf="!loading">
+  <div class="card-content">
+
+    <table class="highlight">
+      <thead>
+        <tr>
+          <th>Contas</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let account of accounts.data" [routerLink]="['/accounts/' + account.id + '/view']">
+          <td>
+            {{account.title}}
+            <small>agência: {{account.agency}} / conta: {{account.account_number}} / código do banco: {{account.bank.code}}</small>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="card-action">
+    <a [routerLink]="['/new']">Nova Conta</a>
+  </div>
+
+</div>
+<app-paginate
+(onChangePage)="pageChanged($event)"
+[total]="accounts.total"
+[activePage]="accounts.current_page"
+[totalPage]="accounts.last_page"
+[resource]="'accounts'">
+
+</app-paginate>
